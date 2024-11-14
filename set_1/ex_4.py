@@ -1,22 +1,33 @@
-from binascii import unhexlify
+from pprint import pprint
 from ex_3 import brute_force_xor
 
-# TODO: Put this into a function
-with open("data.txt", "rb") as file:
-    hex_data = file.readlines()
-    
-    best_score = 0
-    best_result = {}
+def parse_file(file: str) -> dict:
+    """Parse each line in the file to find the single byte XOR cipher character.
+    Return the metadata of the results
+    """
 
-    for data in hex_data:
-        data = data.rstrip(b"\r\n")
-        result = brute_force_xor(data)
-        score = result["Score"]
+    with open(file, "rb") as f:
+        # Split each line and store it in a list
+        hex_data = f.readlines()
         
-        if score > best_score:
-            best_score = score
-            best_result = result
+        best_score = 0
+        best_result = {}
 
-    print(best_result)
+        for data in hex_data:
+            # Strip the newline and carriage return characters
+            data = data.rstrip(b"\r\n")
+            result = brute_force_xor(data)
+            score = result["Score"]
+            
+            # Update if the result has a better score
+            if score > best_score:
+                best_score = score
+                best_result = result
 
+    return best_result
 
+file_path = input("Enter filename: ")
+
+metadata = parse_file(file_path) 
+
+pprint(metadata)
