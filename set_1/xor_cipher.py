@@ -5,8 +5,8 @@ def single_byte_xor(text: bytes, key: int) -> bytes:
     
     return bytes([b ^ key for b in text])
 
-# message = b"Cooking MC's like a pound of bacon"
 
-# encoded_text = single_byte_xor(message, 88)
-
-# decoded_text = single_byte_xor(encoded_text, 88)
+if __name__ == "__main__":
+    message = b"Cooking MC's like a pound of bacon"
+    encoded_text = single_byte_xor(message, 88)
+    decoded_text = single_byte_xor(encoded_text, 88)
