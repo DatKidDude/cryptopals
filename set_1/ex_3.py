@@ -1,4 +1,4 @@
-from binascii import unhexlify
+from binascii import unhexlify, hexlify
 import string
 from single_xor import single_byte_xor
 from pprint import pprint
