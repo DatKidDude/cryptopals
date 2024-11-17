@@ -1,6 +1,6 @@
 from binascii import unhexlify
 import string
-from xor_cipher import single_byte_xor
+from single_xor import single_byte_xor
 from pprint import pprint
 
 ciphertext = b"1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
