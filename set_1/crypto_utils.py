@@ -1,10 +1,15 @@
-from binascii import unhexlify, hexlify
+# Cryptopals utility functions
 import string
-from single_xor import single_byte_xor
-from pprint import pprint
-from crypto_utils import brute_force_xor
+from binascii import unhexlify
 
-ciphertext = b"1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
+def fixed_size_xor(text: bytes, key: bytes) -> bytes:
+    """Cracks XOR cipher with text and key of same length"""
+
+    if len(text) != len(key):
+        raise ValueError("Strings must be of equal length")
+    
+    return bytes([x^y for (x, y) in zip(text, key)])
+
 
 def english_score(text: bytes) -> int:
     """Scores text based on the frequency of common English characters. """
@@ -46,6 +51,8 @@ def brute_force_xor(cipher: bytes) -> dict:
 
     return best_result
 
-if __name__ == "__main__":
-    result = brute_force_xor(ciphertext)
-    pprint(result)
+
+def single_byte_xor(text: bytes, key: int) -> bytes:
+    """Given a plain text 'text' as bytes and an encryption key 'key' as a byte in range [0, 256] the function encrypts the text by perfomring XOR of all the bytes and the 'key' and returns the resultant"""
+    
+    return bytes([b ^ key for b in text])

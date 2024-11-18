@@ -9,11 +9,6 @@ def hamming_distance(str1: bytes, str2: bytes) -> int:
     if len(str1) != len(str2):
         raise ValueError("Strings must be of equal length")
     
-    # Turn characters into their binary values
-    # str1_bits = "".join([f"{i:08b}" for i in str1]).encode("ascii")
-    # str2_bits = "".join([f"{i:08b}" for i in str2]).encode("ascii")
-
-    # return sum(ch1 != ch2 for ch1, ch2 in zip(str1_bits, str2_bits))
     return sum(bin(b1 ^ b2).count("1") for b1, b2 in zip(str1, str2))
 
 
