@@ -2,13 +2,6 @@
 import string
 from binascii import unhexlify
 
-def fixed_size_xor(text: bytes, key: bytes) -> bytes:
-    """Cracks XOR cipher with text and key of same length"""
-
-    if len(text) != len(key):
-        raise ValueError("Strings must be of equal length")
-    
-    return bytes([x^y for (x, y) in zip(text, key)])
 
 
 def english_score(text: bytes) -> int:
